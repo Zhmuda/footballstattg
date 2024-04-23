@@ -1,16 +1,14 @@
 import requests
 from datetime import date
+import os
 import psycopg2
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL)
+
+
 def find_matches():
-    # Подключаемся к базе данных
-    conn = psycopg2.connect(
-        dbname="footballDB",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port="5432"
-    )
     cursor = conn.cursor()
 
     # Создаем таблицу для хранения данных о матчах (если она не существует)
@@ -61,14 +59,6 @@ def find_matches():
 
 
 def get_matches():
-    # Подключаемся к базе данных
-    conn = psycopg2.connect(
-        dbname="footballDB",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port="5432"
-    )
     cursor = conn.cursor()
 
     # Извлекаем данные о матчах из базы данных
@@ -205,4 +195,3 @@ def get_odds(fixture_id):
                                     message += f"Cards 1x2: {bet_type} за {num_odd}\n"
 
     return message
-
