@@ -3,7 +3,7 @@ from datetime import date
 import os
 import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = "postgres://default:EU4X9SyVjDna@ep-aged-silence-a4nbcbvs.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
 
 conn = psycopg2.connect(DATABASE_URL)
 
